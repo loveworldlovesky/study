@@ -16,17 +16,15 @@ public class FactoryManager {
 		Factory f = new Factory();
 		f.setFactoryId(UtilsUUID.getId());
 		f.setFactoryName("北京京天威科技发展有限公司");
-		factoryDao.save(f);
+//		factoryDao.save(f);
 	}
 	
 	public Factory getById(String id){
-		Factory factory = factoryDao.getById(id);
+		Factory factory = factoryDao.get(id);
 		return factory;
 	}
 	public Factory updateObj(String id){
-		Factory factory = factoryDao.getById(id);
-		factory.setFullName("eidtObj");
-		factoryDao.save(factory);
+		Factory factory = factoryDao.get(id);
 		return factory;
 	}
 	
