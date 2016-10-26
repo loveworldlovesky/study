@@ -11,6 +11,14 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
 		p:sessionFactory-ref="sessionFactory" />
 
+	<bean id="hibernateSessionFactory" name="hibernateSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" >
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingLocations" ref="hibernateMappingLocations"/>
+		<property name="hibernateProperties" ref="hibernateProperties"/>
+		<property name="namingStrategy" ref="namingStrategy"/>
+		
+	</bean>
 	<bean id="sessionFactory" 
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource"/>
