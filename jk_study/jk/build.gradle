@@ -19,7 +19,8 @@ ext{
 dependencies {
 	//servlet-api
     providedCompile 'javax.servlet:servlet-api:2.5' // 编译期
-    providedRuntime 'javax.servlet:jstl:1.2'    // 运行时
+    //providedRuntime 'javax.servlet:jstl:1.2'    // 运行时
+    compile "javax.servlet:jstl:1.2"
     //依赖包
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'org.slf4j:slf4j-log4j12:1.7.2'

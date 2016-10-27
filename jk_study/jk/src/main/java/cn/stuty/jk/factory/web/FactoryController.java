@@ -1,32 +1,29 @@
 package cn.stuty.jk.factory.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.stuty.jk.factory.entity.Factory;
 import cn.stuty.jk.factory.manager.FactoryManager;
 
-public class FactoryController implements Controller{
-	
-	FactoryManager entityManager;
-
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		Factory factory1 = entityManager.getById("1");
-		System.out.println("查询.........name1 = "+factory1.getFactoryName());
-		Factory factory2 = entityManager.updateObj("1");
-		System.out.println("查询.........name2 = "+factory2.getFactoryName());
-//		entityManager.add();
-		return null;
-	}
-
-
+@Controller
+public class FactoryController{
+	@Autowired
+	FactoryManager factoryManager;
 	public void setEntityManager(FactoryManager entityManager) {
-		this.entityManager = entityManager;
+		this.factoryManager = entityManager;
 	}
+	//列表
+	@RequestMapping("/jk/factory/list.do")
+	public String list(Model model){
+		List<Factory> dataList=factoryManager.list();
+		model.addAttribute("dataList", dataList);//将数据传递到页面
+		return "/jk/factory/jFactoryList.jsp";//转向页面
+	}
+	
 	
 }

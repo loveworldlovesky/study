@@ -33,34 +33,33 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		return t;
 	}
 
-
 	public void insert(T entity) {
-//		this.getSqlSession().insert(ns + ".insert", entity);
+		this.getHibernateTemplate().saveOrUpdate(entity);
 	}
-
 
 	public void update(T entity) {
 //		this.getSqlSession().update(ns + ".update", entity);
 	}
 
-
 	public void deleteById(Serializable id) {
 //		this.getSqlSession().delete(ns + ".deleteById", id);
 	}
-
 
 	public void delete(Serializable[] ids) {
 //		this.getSqlSession().delete(ns + ".delete", ids);
 	}
 	
-	public List<T> findPage(Page page){
+	public List<T> findPage(Page<T> page){
 //		List<T> oList = this.getSqlSession().selectList(ns + ".findPage", page);
 //		return oList;
 		return null;
 	}
 
-
-	public List<T> find(Map map) {
+	public List<T> list() {
+		List<T> list = this.getHibernateTemplate().loadAll(clazz);
+		return list;
+	}
+	public List<T> list(Map<Object,Object> map) {
 //		List<T> oList = this.getSqlSession().selectList(ns + ".find", map);
 //		return oList;
 		return null;

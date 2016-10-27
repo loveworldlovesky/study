@@ -5,5 +5,6 @@ import cn.stuty.jk.factory.entity.Factory;
 
 public interface FactoryDao extends BaseDao<Factory>{
 
+	public Factory getById(String id);
 
 }

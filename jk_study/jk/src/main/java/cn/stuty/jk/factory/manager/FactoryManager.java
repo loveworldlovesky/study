@@ -1,30 +1,23 @@
 package cn.stuty.jk.factory.manager;
 
+import javax.annotation.Resource;
+
+import cn.stuty.jk.base.manager.BaseManagerImpl;
 import cn.stuty.jk.factory.dao.FactoryDao;
 import cn.stuty.jk.factory.entity.Factory;
-import cn.stuty.utils.UtilsUUID;
 
-public class FactoryManager {
+public class FactoryManager extends BaseManagerImpl<Factory>{
 	
-	FactoryDao factoryDao;
-
+//	BaseDao<Factory> factoryDao;
+//
+	@Resource(name="factoryDao")
 	public void setFactoryDao(FactoryDao factoryDao) {
-		this.factoryDao = factoryDao;
-	}
-
-	public void add() {
-		Factory f = new Factory();
-		f.setFactoryId(UtilsUUID.getId());
-		f.setFactoryName("北京京天威科技发展有限公司");
-//		factoryDao.save(f);
+		super.setBaseDao(factoryDao);
 	}
 	
-	public Factory getById(String id){
-		Factory factory = factoryDao.get(id);
-		return factory;
-	}
-	public Factory updateObj(String id){
-		Factory factory = factoryDao.get(id);
+	public Factory getObj(String id){
+		FactoryDao factoryDao = (FactoryDao) getBaseDao();
+		Factory factory = factoryDao.getById(id);
 		return factory;
 	}
 	

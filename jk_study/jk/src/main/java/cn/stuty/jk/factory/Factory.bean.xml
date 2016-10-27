@@ -3,19 +3,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 	default-lazy-init="true">
 	
-	<bean name="/jk/factory.do"  scope="request"
-		class="cn.stuty.jk.factory.web.FactoryController">
-		<description>生产厂家</description>
-		<property name="entityManager" ref="factoryManager" />
-	</bean>
+<!-- 	<bean name="/jk/factory.do"  scope="request" -->
+<!-- 		class="cn.stuty.jk.factory.web.FactoryController"> -->
+<!-- 		<description>生产厂家</description> -->
+<!-- 		<property name="entityManager" ref="factoryManager" /> -->
+<!-- 	</bean> -->
 	
-	<bean id="factoryManager" scope="request"
+	<bean id="factoryManager" 
 		class="cn.stuty.jk.factory.manager.FactoryManager">
-		<property name="factoryDao" ref="factoryDao" />
+		<property name="baseDao" ref="factoryDao" />
+<!-- 		<property name="factoryDao" ref="factoryDao" /> -->
 	</bean>
-	<bean id="factoryDao" scope="prototype"
-		class="cn.stuty.jk.factory.dao.FactoryDaoHibernate">
-<!-- 		<property name="hibernatesessionFactory" ref="sessionFactory" /> -->
+	<bean id="factoryDao" scope="singleton"
+		class="cn.stuty.jk.factory.dao.FactoryDaoImpl">
 	</bean>
 	
 </beans>
